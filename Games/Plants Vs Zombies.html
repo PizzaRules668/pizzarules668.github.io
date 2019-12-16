@@ -18,8 +18,8 @@
 		background:"green",
 		numX:15,
 		numY:10,
-		kockaWidth:80,
-		kockaHeight:80,
+		Width:100%,
+		Height:100%,
 		plocha:[],
 		fill:function(pole){
 			for(var i=0;i<this.numY;i++){
@@ -32,7 +32,7 @@
 		},
 		draw:function(){
 			context.beginPath();
-			context.rect(0, 0, this.numX*this.kockaWidth, canvas.height);
+			context.rect(0, 0, this.numX*this.Width, canvas.height);
 			context.fillStyle = this.background;
 			context.fill();
 		}
@@ -41,22 +41,22 @@
 		background:"grey",
 		draw:function(){
 			context.beginPath();
-			context.rect(plocha.numX*plocha.kockaWidth, 0, 2.5*plocha.kockaWidth, canvas.height);
+			context.rect(plocha.numX*plocha.Width, 0, 2.5*plocha.Width, canvas.height);
 			context.fillStyle = this.background;
 			context.fill();
 			context.font = 'italic 35pt Calibri';
 			context.fillStyle = 'blue';
-			context.fillText("Suns: "+slnk, (plocha.numX*plocha.kockaWidth+10), 45);
+			context.fillText("Suns: "+slnk, (plocha.numX*plocha.Width+10), 45);
 			for(i in this.plants){
 				var toto =this.plants[i];
 				toto.image.src="images/"+toto.img;								
 				if(player.select[0]==toto.name){
 					context.beginPath();
-					context.rect(toto.x, toto.y, plocha.kockaWidth, plocha.kockaHeight);
+					context.rect(toto.x, toto.y, plocha.Width, plocha.Height);
 				    context.fillStyle = '#444';
 				    context.fill();
 				}
-				context.drawImage(toto.image,toto.x,toto.y,plocha.kockaWidth,plocha.kockaHeight);
+				context.drawImage(toto.image,toto.x,toto.y,plocha.Width,plocha.Height);
 			}
 		},
 		plants:{
@@ -176,7 +176,7 @@
 					continue;	
 				}
 			}
-			if(toto.x-toto.polomer>=plocha.numX*plocha.kockaWidth){
+			if(toto.x-toto.polomer>=plocha.numX*plocha.Width){
 				shots.splice(i,1);
 			}
 		};
@@ -188,7 +188,7 @@
 	function seeder(){
 		if(Date.now()-lastZombieAdd>=10000){
 			var riadok=Math.floor(Math.random()*10);
-			zombies.push(new walker((plocha.numX*plocha.kockaWidth+40),riadok*plocha.kockaHeight));
+			zombies.push(new walker((plocha.numX*plocha.Width+40),riadok*plocha.Height));
 			lastZombieAdd=Date.now();
 		}
 	};
@@ -197,7 +197,7 @@
 			var toto=sidebar.plants[j];
 			var X=data.clientX;
 			var Y=data.clientY;
-			var click=((X>toto.x)&&(X<toto.x+plocha.kockaWidth)&&(Y>toto.y)&&(Y<toto.y+plocha.kockaHeight));
+			var click=((X>toto.x)&&(X<toto.x+plocha.Width)&&(Y>toto.y)&&(Y<toto.y+plocha.Height));
 			if(click){
 				if(player.select[0]==toto["name"]){
 					player.select=false;
@@ -219,9 +219,9 @@
 				return true;
 			}
 		}
-		if((data.x>=0)&&(data.x<=plocha.numX*plocha.kockaWidth)&&(data.y>=0)&&(data.y<=plocha.numY*plocha.kockaHeight)&&(player.select)){
-			var Xko=Math.floor(X/plocha.kockaWidth);
-			var Yko=Math.floor(Y/plocha.kockaHeight);
+		if((data.x>=0)&&(data.x<=plocha.numX*plocha.Width)&&(data.y>=0)&&(data.y<=plocha.numY*plocha.Height)&&(player.select)){
+			var Xko=Math.floor(X/plocha.Width);
+			var Yko=Math.floor(Y/plocha.Height);
 			if(plocha.plocha[Yko][Xko]!=0){
 				return false;
 			}
