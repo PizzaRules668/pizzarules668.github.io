@@ -1,0 +1,13 @@
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    width: 100%;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    font-size: 1000%;
+}
+div.a {
+    font-size: 1000%;
+}
